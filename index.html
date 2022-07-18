@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 , shrink-to-fit=no" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
+  <link rel="icon" href="js-icon.png" />
+  <title>Examen final - Javascript</title>
+</head>
+
+<body>
+  <!-- Menu Bar -->
+  <ul class="menu">
+    <li><a href="/" class="active">ProjetFinal-JavaScript - Convertisseur des unités</a></li>
+    <li class="fa fa-bars burger">
+      <a id="lnkAccueil" href="#" onclick="showContent('divHome');">Accueil</a>
+      <a id="lnkMonnaies" href="#" onclick="showContent('divCurrency');">Monnaies</a>
+      <a id="lnkLongueurs" href="#" onclick="showContent('divLongueurs');">Longueurs</a>
+      <a id="lnkPoids" href="#" onclick="showContent('divPoids');">Poids</a>
+    </li>
+  </ul>
+  <div class="container" id="divHome">
+    <h1>Bienvenue sur notre application de conversion !</h1>
+    Choisir le type de conversion que vous souhaitez effectuer:
+    <ul class="content">
+      <li>1.- Monnaies</li>
+      <li>2.- Longueurs</li>
+      <li>3.- Poids</li>
+    </ul>
+    Puis Choisir les unités à convertir:
+    <ul class="content">
+      <li>1.- Monnaies</li>
+      <ul>
+        <li>1.- Dollars en Euro (1 USD = 0.87325 EUR)</li>
+        <li>2.- Euro en Dollars (1 EUR = 1.14515 USD)</li>
+        <li>3.- Dollars en Dollars Canadiens (1 USD = 1.25124 CAD)</li>
+        <li>4.- Dollars Canadiens en Dollars (1 CAD = 0.79921 USD)</li>
+        <li>5.- Euro en Dollars Canadiens (1 EUR = 1.43315 CAD)</li>
+        <li>6.- Dollars Canadiens en Euro (1 CAD = 0.69776 EUR)</li>
+      </ul>
+      <li>2.- Longueurs</li>
+      <ul>
+        <li>1.- Pouces en Centimètres (pouces * 2,54)</li>
+        <li>2.- Centimètres en Pouces (cm / 2,54)</li>
+        <li>3.- Kilomètre en Miles (km * 0.62137)</li>
+        <li>4.- Miles en Kilomètres (miles/0.62137)</li>
+      </ul>
+      <li>3.- Poids</li>
+      <ul>
+        <li>1.- Livres en Kilogrammes (lb/2.2046)</li>
+        <li>2.- Kilogrammes en Livres (kg * 2.2046)</li>
+      </ul>
+    </ul>
+  </div>
+  <!-- Formulaire de de conversion de monnaies -->
+  <div class="container" id="divCurrency">
+    <br />
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="row g-3 align-items-center">
+              <div class="mb-3">
+                <p class="form-titre">Formulaire de conversion de monnaies</p> <br>
+                <label for="amount" class="col-form-label">Montant</label>
+                <input type="number" class="form-control" id="amount" placeholder="Saisir le montant à convertir:" />
+              </div>
+              <div class="mb-3">
+                <label for="from" class="col-form-label">De</label>
+                <select class="form-control" id="from" style="width: 30%">
+                 
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="to" class="col-form-label">Vers</label>
+                <select class="form-control" id="to" style="width: 30%">
+                  
+                </select>
+              </div>
+            </div>
+            <br />
+            <a href="#" class="btn btn-primary" onclick="currentConverter()">Convertir</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <br />
+    <div class="result" id="hidden-div">
+      <div class="card text-white bg-success mb-3" id="successCard" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Resultat</h5>
+          <p class="card-text" id="resultMsg"></p>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" id="errorCard" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Erreur</h5>
+          <p class="card-text" id="errorMsg"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire de conversion de longueurs -->
+
+  <div class="container" id="divLongueurs">
+    <br />
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="row g-3 align-items-center">
+              <div class="mb-3">
+                <p class="form-titre">Formulaire de conversion de longueurs</p> <br>
+                <label for="amount2" class="col-form-label">Longueurs à convertir :</label>
+                <input type="number" class="form-control" id="amount2" placeholder="Saisir la longueur à convertir:" />
+              </div>
+              <div class="mb-3">
+                <label for="fromUnit" class="col-form-label">De</label>
+                <select class="form-control" id="fromUnit" style="width: 30%">        </select>
+              </div>
+              <div class="mb-3">
+                <label for="to2" class="col-form-label">Vers</label>
+                <select class="form-control" id="to2" style="width: 30%">
+
+                </select>
+              </div>
+            </div>
+            <br />
+            <a href="#" class="btn btn-primary" onclick="lengthConverter()">Convertir</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <br />
+    <div class="result" id="hidden-div2">
+      <div class="card text-white bg-success mb-3" id="successCard2" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Resultat</h5>
+          <p class="card-text" id="resultMsg2"></p>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" id="errorCard2" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Erreur</h5>
+          <p class="card-text" id="errorMsg2"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire de conversion Poids -->
+
+  <div class="container" id="divPoids">
+    <br />
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="row g-3 align-items-center">
+              <div class="mb-3">
+                <p class="form-titre">Formulaire de conversion de poids</p> <br>
+                <label for="amount3" class="col-form-label">Poids à convertir :</label>
+                <input type="number" class="form-control" id="amount3" placeholder="Saisir le poids à convertir:" />
+              </div>
+              <div class="mb-3">
+                <label for="fromUnit2" class="col-form-label">De</label>
+                <select class="form-control" id="fromUnit2" style="width: 30%">         </select>
+              </div>
+              <div class="mb-3">
+                <label for="to3" class="col-form-label">Vers</label>
+                <select class="form-control" id="to3" style="width: 30%">
+
+                </select>
+              </div>
+            </div>
+            <br />
+            <a href="#" class="btn btn-primary" onclick="volumeConverter()">Convertir</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <br />
+    <div class="result" id="hidden-div3">
+      <div class="card text-white bg-success mb-3" id="successCard3" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Resultat</h5>
+          <p class="card-text"></p>
+          <p class="card-text" id="resultMsg3"></p>
+        </div>
+      </div>
+      <div class="card text-white bg-danger mb-3" id="errorCard3" style="max-width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Erreur</h5>
+          <p class="card-text" id="errorMsg3"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="js/index.js"></script>

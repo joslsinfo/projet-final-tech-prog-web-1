@@ -1,0 +1,91 @@
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+h1 {
+  color: rgb(10, 20, 110);
+  font-size: 2rem;
+}
+.form-titre{
+  text-align: center;
+  color:rgb(10, 20, 110);
+  margin:0 auto;
+  padding: 0.5rem;
+  background-color: goldenrod;
+  width:75%;
+    
+}
+
+/* Menu */
+ul.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(10, 20, 110);
+}
+
+ul.menu li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+
+ul.menu li:last-child {
+  border-right: none;
+}
+
+ul.menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.menu li a:hover:not(.active) {
+  background-color: rgb(10, 20, 110);
+}
+
+ul.menu .active {
+  background-color: rgb(0, 113, 235);
+}
+
+ul.menu li.burger {
+  float: right;
+  color: white;
+  font-size: 18px;
+  padding: 14px 16px;
+}
+
+ul.menu li.burger a {
+  padding: 0;
+}
+
+/* Container */
+/* .container {
+  padding: 0.01em 30%;
+} */
+
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ul.content {
+  list-style: none;
+}
+
+ul.content li {
+  margin-bottom: 5px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.result {
+  position: relative;
+  padding: 1rem 28rem;
+  margin: 1rem -0.75rem 0;
+  display: none;
+}
